@@ -1,161 +1,130 @@
-# 2026版 高效的Open AI、Midjourney API代理、Claude代理、Suno代理等供应商
+# GPT 中转站推荐：国内直连 ChatGPT API，OpenAI SDK 一行都不用改
 
-Token173聚合中转API（token173.net）是一个高效的Open AI、Midjourney API代理、Claude代理、Suno代理等供应商
-我们致力于提供优质的 API 接入服务，让您可以轻松集成先进的AI模型至您的产品和服务。通过 API 综合管理平台，无缝整合OpenAl最尖端的人工智能模型。借助我们可靠且易于使用的API解决方案，升级您的产品与服务。
+OpenAI 官方接口在国内的问题老生常谈：网络不稳定、支付要境外卡、账号动不动触发风控。做批量任务的更难受，一次限流就把整条流水线卡住。
 
-[[点击查看](https://token173.net)]
+Token173（https://token173.net）提供 OpenAI 兼容入口，接口格式和官方一致。你原来用 `openai` 库写的东西，把 `base_url` 换掉就能跑，不用重写请求结构，也不用把 SDK 降级。
 
-让您能够轻松一站式接入各种 AI 服务
+## 当前可用的 GPT 模型
 
-价格优惠，仅需 2 元即可购买1美刀额度
+| 模型 ID | 定位 |
+|---|---|
+| `gpt-6.2-astra` | 最新一代，多步任务与复杂推理 |
+| `gpt-6.1-sol` | 通用主力，速度和效果平衡 |
+| `gpt-6.1-terra` | 长上下文、文档级处理 |
+| `gpt-6-sol`、`gpt-6-astra` | 上一代，线上项目仍在用 |
+| `gpt-5.6-sol`、`gpt-5.6-terra` | 老项目兼容 |
+| `gpt-5.5`、`gpt-5.4` | 历史版本，做回归对比时用 |
 
-注册即送0.2刀，不限时间，按量计费
+图像能力另外有 `gpt-image-2.6-flare`、`gpt-image-2.6-sunburst`（2.6 的两个模型，前者快、后者细节准）、`gpt-image-2.5`、`gpt-image-2`，视频有 `doubao-seedance-2-0-fast-260128`、`sd-2-5-480p`。
 
-明细可查，每一笔消耗都公开透明
+## 接入
 
-支持 OpenAI 官方所有模型，以及其他市面上常见模型！
-
-注意！我们的价格是 2 = 1 刀额度！！
-
-只需设置模型名，即可开始使用模型！
-
-模型名称即下面的模型列中的内容
-
-除3.5、4.0模型以外，其他模型价格与官方完全一致(注意我们是2元人民币买1刀)
-
-# 这里是使用教程
-
-### 新用户注册赠送 0.2 刀额度，前往令牌页复制令牌，在聊天页设置中填入即可体验！
-
-### 目录
-
-```
-· 分组区别
-· 网站使用教程
-  · GPT接入教程
-  · Midjourney 接入教程
-· 常见项目配置方式
-· 常见问题
+```bash
+export OPENAI_BASE_URL="https://token173.net/v1"
+export OPENAI_API_KEY="sk-你的令牌"
 ```
 
-<br/>
-
-## 分组区别
-
-## Token173聚合中转API（token173.net）网站使用教程
-
-🔥 均为高速回复渠道非低价普通渠道
-
-💰 为方便计费，一个账号通用所有模型，兑换比例固定为 2 元兑换 1美金
-其中GPT-4全模型（含32K、Dalle3）后台为官方计费倍率 2 倍，相当于4元兑换1美金（约等于官方的2.4折）
-
-后台日志计费规则解析：假如提示是2000，补全是1000，使用的gpt-4，则您后台的扣费公式=(2000/1000)x0.03（提问价格）+(1000/1000)x0.06（回答价格）=$0.12
-
-### GPT接入教程
-
-1. 注册账号，免费体验，注册即送0.2美金额度，1刀起充
-2. 前往[令牌页](/token)，添加令牌
-3. 修改应用 BASE_URL为中转接口调用地址： https://token173.net  设置 API Key 为添加的令牌
-
-不同的客户端需要填写不同的BASE_URL, 请尝试如下地址
-https://token173.net
-https://token173.net/v1
-https://token173.net/v1/chat/completions
-
-模型名在[首页](/) -> 支持模型中的第一列 模型 中
-可在[聊天页](/chat) 进行测试或使用
-
-<br/>
-
-### Midjourney 接入教程
-
-Midiourney-Proxy主机：https://token173.net
-
-Midiourney-Proxy Secret ：自己后台生成的令牌
-
-同时支持 Mid journey proxy Plus 以及 Mid journey proxy 接口协议
-
-上面为MJ Proxy快捷接入方式，如果你的项目不支持以上方式，请点击查看[接入文档](https://gpt-best.apifox.cn/doc-3530863)
-
-以下参数均可在令牌设置中进行设置
-切换 MJ mode:
-
-1. 通过 URL 路径切换
-默认 /mj 是 fast mode
-/mj-fast/mj 是 fast mode
-/mj-turbo/mj 是 turbo mode
-/mj-relax/mj 是 relax mode
-例如： https://token173.net/mj-turbo/mj/submit/imagine
-2. prompt 中通过 mj 参数指定： --relax\--fast\--turbo
-
-切换 MJ 返回的图片地址：
-1. 通过 URL 路径切换
-默认 /mj 是管理员设置默认方式
-/mj-{mode}-relay/mj 是使用服务转发地址，图片国内访问较快
-/mj-{mode}-origin/mj 是使用discord 原地址，图片国外访问很快
-/mj-{mode}-proxy/mj 是使用管理员设置的代理地址，图片国内访问较快
-例如： https://token173.net/
-
-**价格表**
-
-|Mode 模式|类型1端点(根据mode调整价格)|类型2端点 (固定价格)|类型3端点(免费)|
-|--|--|--|--|
-|Relax|0.12/次|0.07/次|0/次|
-|Fast|0.2/次|0.07/次|0/次|
-|Turbo|0.4/次|0.07/次|0/次|
-
-<br/>
-
-类型1端点：
-
-1. 类型 1 端点包括：Imagine/Variation/Outpaint/Pan/Blend/Inpaint/Upscale 2x/Upscale 4x/PicReader/Reroll
-   1. ```
-      中文释义：绘图/变换/变焦/焦点移动/混图/局部重绘/放大2倍/放大4倍/图生文后生成图片/重新生成
-      ```
-2. 类型 2 端点包括：Upscale/Describe/PicReaderRetry/FaceSwap/Shorten
-   1. ```
-      中文释义：放大/图生文/图生文重新生成/换脸/prompt分析
-      ```
-3. 类型 3 端点包括：Fetch/ListByIDs/Modal/Seed
-   1. ```
-      中文释义：获取单个任务进度/批量获取任务/确认提交弹窗任务/获取Seed
-      ```
-
-<br/>
-
-## 常见项目配置方式
-
-### **python openai官方库（使用AutoGPT，langchain等）**
-
-示例代码请参考[demo.py](https://token173.net/demo.py)
-
-***方法一***
+Python：
 
 ```python
-import openai
-openai.api_base = "https://token173.net/v1"
+from openai import OpenAI
+
+client = OpenAI(api_key="sk-你的令牌", base_url="https://token173.net/v1")
+
+r = client.chat.completions.create(
+    model="gpt-6.1-sol",
+    messages=[
+        {"role": "system", "content": "你是资深后端工程师，回答要短。"},
+        {"role": "user", "content": "Redis 集群脑裂怎么防？"},
+    ],
+    temperature=0.3,
+)
+print(r.choices[0].message.content)
 ```
 
-***方法二（方法一不起作用用这个）***
+Node.js：
 
-修改环境变量OPENAI_API_BASE，各个系统怎么改环境变量请自行搜索，修改环境变量后不起作用请重启系统。
+```js
+import OpenAI from "openai";
 
-```sh
-OPENAI_API_BASE=https://token173.net/v1
+const client = new OpenAI({
+  apiKey: "sk-你的令牌",
+  baseURL: "https://token173.net/v1",
+});
 ```
 
-### **开源gpt_academic**
+流式输出、函数调用、JSON 模式都和官方一致，`stream: true` 照常用。
 
-找到`config.py`文件中的`API_URL_REDIRECT`配置并修改为以下内容：
+## 批量跑量怎么写才稳
 
 ```python
-API_URL_REDIRECT = {"https://api.openai.com/v1/chat/completions": "https://token173.net/v1/chat/completions"}
+from concurrent.futures import ThreadPoolExecutor
+from openai import OpenAI
+
+client = OpenAI(api_key="sk-你的令牌", base_url="https://token173.net/v1")
+
+def run(prompt):
+    for i in range(3):
+        try:
+            return client.chat.completions.create(
+                model="gpt-6.1-sol",
+                messages=[{"role": "user", "content": prompt}],
+            ).choices[0].message.content
+        except Exception:
+            if i == 2:
+                raise
+
+prompts = open("prompts.txt", encoding="utf-8").read().splitlines()
+with ThreadPoolExecutor(max_workers=8) as pool:
+    for text in pool.map(run, prompts):
+        print(text)
 ```
 
-### **ChatBox(推荐使用)**
+并发别一开始就开很高，先 4 到 8 个线程跑一轮，看返回时间稳定再往上加。失败重试三次足够，再多就是浪费额度。
 
-ChatGPT开源桌面应用，支持全部桌面平台。
+## 客户端填法
 
-下载链接：https://github.com/Bin-Huang/chatbox/releases
+| 客户端 | Base URL |
+|---|---|
+| Cherry Studio / ChatBox / NextChat | `https://token173.net/v1` |
+| LobeChat | `https://token173.net/v1`，供应商选 OpenAI |
+| Cursor | Settings → Models → Override OpenAI Base URL 填 `https://token173.net/v1` |
+| Dify / n8n / Coze 插件 | 同上，Key 放 Bearer 头 |
+| OneAPI / NewAPI | 作为 OpenAI 渠道，代理地址 `https://token173.net` |
 
-使用方法：如图在设置中填入购买的密钥，并将代理设置为`https://token173.net`即可
+## 计费
+
+2 元换 1 美元额度，注册送 0.2 美元。按 token 扣，后台能看到每次请求的输入输出 token 数和扣费金额。失败的请求不计费。
+
+`gpt-6.1-sol` 这类主力模型的实际单价大约是官方定价的三折，跑批量文案、客服话术、商品描述这类场景，成本能算得很清楚。
+
+## 几个实际会踩的坑
+
+**Base URL 少写 `/v1`。** OpenAI SDK 里 `base_url` 必须带 `/v1`，只写到域名会报 404。
+
+**模型名大小写。** 全小写，中间用 `-`，写成 `GPT-6.1-Sol` 一律找不到模型。
+
+**上下文塞太满。** 长文档别整篇丢进去，先切块。token 烧得快，效果也不见得更好。
+
+**流式输出断在半路。** 网络抖动会有，客户端里加重试逻辑，或者改用非流式一次性拿完。
+
+## 常见问题
+
+**Q：和官方 API 有区别吗？**
+协议一致，模型能力来自官方渠道。区别在于入口在国内、按人民币充值、有独立的后台额度管理。
+
+**Q：能不能同时给多个项目用？**
+可以，一个账号下建多个令牌，分别统计消耗。
+
+**Q：超长上下文支持到多少？**
+跟随模型本身的能力，`gpt-6.1-terra` 这类长上下文模型能处理整份文档。具体上限在后台模型列表里标着。
+
+**Q：出图任务也能走同一个 Key 吗？**
+能。`gpt-image-2.6-flare` 或 `gpt-image-2.6-sunburst` 走 `/v1/images/generations`，格式和官方一致，详见 [gpt-image-2 仓库](https://github.com/Token173/gpt-image-2)。
+
+## 相关
+
+- 文档站：https://docs.token173.net
+- Claude 专题：[claude-api](https://github.com/Token173/claude-api)
+- Gemini 专题：[gemini-api](https://github.com/Token173/gemini-api)
+- 图像接口：[gpt-image-api](https://github.com/Token173/gpt-image-api)
