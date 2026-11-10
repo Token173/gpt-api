@@ -8,14 +8,14 @@ Token173（https://token173.net）提供 OpenAI 兼容入口，接口格式和�
 
 | 模型 ID | 定位 |
 |---|---|
-| `gpt-6.2-astra` | 最新一代，多步任务与复杂推理 |
+| `gpt-6-astra` | 旗舰，多步任务与复杂推理 |
 | `gpt-6.1-sol` | 通用主力，速度和效果平衡 |
 | `gpt-6.1-terra` | 长上下文、文档级处理 |
 | `gpt-6-sol`、`gpt-6-astra` | 上一代，线上项目仍在用 |
 | `gpt-5.6-sol`、`gpt-5.6-terra` | 老项目兼容 |
 | `gpt-5.5`、`gpt-5.4` | 历史版本，做回归对比时用 |
 
-图像能力另外有 `gpt-image-2.6-flare`、`gpt-image-2.6-sunburst`（2.6 的两个模型，前者快、后者细节准）、`gpt-image-2.5`、`gpt-image-2`，视频有 `doubao-seedance-2-0-fast-260128`、`sd-2-5-480p`。
+图像能力另外有 `gpt-image-2.6-flare`、`gpt-image-2.6-sunburst`（2.6 的两个模型，前者快、后者细节准）、`gpt-image-2.5-sunburst`、`gpt-image-2`，视频有 `doubao-seedance-2-0-fast-260128`、`veo_3_1`。
 
 ## 接入
 
