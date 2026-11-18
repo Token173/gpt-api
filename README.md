@@ -12,7 +12,7 @@ Token173（https://token173.net）提供 OpenAI 兼容入口，接口格式和�
 | `gpt-6.2-sol` | 6.2 主力，速度与成本平衡，日常任务首选 |
 | `gpt-6-astra` | 6 代旗舰，多步任务与复杂推理 |
 | `gpt-6.1-sol` | 通用主力，速度和效果平衡 |
-| `gpt-6.1-terra` | 长上下文、文档级处理 |
+| `gpt-6.1-terra` | 视觉理解与电脑操作强，适合截图识图、界面流程、图文写作，同价档速度快约 3 倍 |
 | `gpt-6-sol`、`gpt-6-astra` | 上一代，线上项目仍在用 |
 | `gpt-5.6-sol`、`gpt-5.6-terra` | 老项目兼容 |
 | `gpt-5.5`、`gpt-5.4` | 历史版本，做回归对比时用 |
@@ -119,7 +119,7 @@ with ThreadPoolExecutor(max_workers=8) as pool:
 可以，一个账号下建多个令牌，分别统计消耗。
 
 **Q：超长上下文支持到多少？**
-跟随模型本身的能力，`gpt-6.1-terra` 这类长上下文模型能处理整份文档。具体上限在后台模型列表里标着。
+6.x 这几个型号的上下文都是 105 万 token，Terra 做区分靠的不是更长的窗口，而是视觉理解与电脑操作。具体上限在后台模型列表里标着。
 
 **Q：出图任务也能走同一个 Key 吗？**
 能。`gpt-image-2.6-flare` 或 `gpt-image-2.6-sunburst` 走 `/v1/images/generations`，格式和官方一致，详见 [gpt-image-2 仓库](https://github.com/Token173/gpt-image-2)。
